@@ -2910,3 +2910,252 @@ button {
     opacity: 1;
   }
 }
+
+/* =====================================================
+   HERO ALIGNMENT + 3D FUTURISTIC POLISH
+   ===================================================== */
+
+.hero {
+  min-height: calc(100vh - 76px);
+  padding-top: 76px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero > .container {
+  width: min(1380px, calc(100% - 100px));
+  margin: 0 auto;
+}
+
+.hero-grid {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 55px;
+}
+
+/* Keep Prasad safely away from the browser edge */
+.hero-copy {
+  padding-left: 20px;
+  position: relative;
+  z-index: 5;
+  min-width: 0;
+}
+
+.hero h1 {
+  max-width: 620px;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.hero h2 {
+  white-space: nowrap;
+}
+
+.hero-text {
+  max-width: 560px;
+}
+
+/* More breathing room around portrait */
+.hero-visual {
+  min-width: 0;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+/* Futuristic portrait frame */
+.photo-frame {
+  transform-style: preserve-3d;
+  transition: transform .18s ease-out;
+  filter:
+    drop-shadow(0 0 25px rgba(0, 174, 255, .18))
+    drop-shadow(0 0 55px rgba(108, 60, 255, .12));
+}
+
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 45px 15px 0;
+  border: 1px solid rgba(0, 208, 255, .18);
+  border-radius: 35px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 217, 255, .06),
+      transparent 35%,
+      rgba(126, 76, 255, .06)
+    );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Neon orbit animation */
+.orbit-one {
+  animation: orbitSpin 18s linear infinite;
+  border-color: rgba(0, 191, 255, .30);
+}
+
+.orbit-two {
+  animation: orbitSpinReverse 24s linear infinite;
+  border-color: rgba(128, 75, 255, .24);
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(25deg);
+  }
+  to {
+    transform: rotate(385deg);
+  }
+}
+
+@keyframes orbitSpinReverse {
+  from {
+    transform: rotate(-25deg);
+  }
+  to {
+    transform: rotate(-385deg);
+  }
+}
+
+/* Tech cards become more glassy */
+.floating-card {
+  background: linear-gradient(
+    135deg,
+    rgba(12, 25, 48, .92),
+    rgba(8, 14, 30, .78)
+  );
+  border: 1px solid rgba(74, 163, 255, .28);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, .35),
+    0 0 25px rgba(0, 153, 255, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.floating-card:hover {
+  border-color: rgba(0, 217, 255, .65);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, .4),
+    0 0 30px rgba(0, 191, 255, .16);
+}
+
+/* Better hero button glow */
+.btn-primary {
+  background: linear-gradient(135deg, #00bfff, #6955ff);
+  box-shadow:
+    0 10px 30px rgba(0, 174, 255, .22),
+    0 0 20px rgba(105, 85, 255, .12);
+}
+
+.btn-primary:hover {
+  box-shadow:
+    0 15px 35px rgba(0, 174, 255, .35),
+    0 0 30px rgba(105, 85, 255, .2);
+}
+
+/* Animated neon line behind hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 55px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 217, 255, .4),
+    rgba(122, 72, 255, .45),
+    transparent
+  );
+  box-shadow: 0 0 20px rgba(0, 191, 255, .15);
+  pointer-events: none;
+}
+
+/* Subtle moving glow */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  left: 35%;
+  top: 25%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 153, 255, .07),
+    transparent 68%
+  );
+  filter: blur(20px);
+  pointer-events: none;
+  animation: heroGlow 7s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+  from {
+    transform: translate3d(-30px, 15px, 0) scale(.9);
+  }
+  to {
+    transform: translate3d(40px, -20px, 0) scale(1.1);
+  }
+}
+
+/* =====================================================
+   RESPONSIVE FIX
+   ===================================================== */
+
+@media (max-width: 1100px) {
+
+  .hero > .container {
+    width: min(100% - 60px, 1000px);
+  }
+
+  .hero-grid {
+    gap: 25px;
+  }
+
+  .hero-copy {
+    padding-left: 10px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 6vw, 72px);
+  }
+}
+
+@media (max-width: 700px) {
+
+  .hero {
+    padding-top: 85px;
+  }
+
+  .hero > .container {
+    width: calc(100% - 32px);
+  }
+
+  .hero-grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    padding-left: 0;
+  }
+
+  .hero h2 {
+    white-space: normal;
+  }
+
+  .hero-visual {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .hero::before {
+    left: 5%;
+    right: 5%;
+  }
+}
