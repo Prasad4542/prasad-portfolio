@@ -111,3 +111,32 @@ window.addEventListener("load", () => {
     }, 1000);
   }
 });
+
+/* =====================================================
+   3D HERO MOUSE PARALLAX
+   ===================================================== */
+
+const heroVisual = document.querySelector(".hero-visual");
+const photoFrame = document.querySelector(".photo-frame");
+
+if (heroVisual && photoFrame && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+
+  heroVisual.addEventListener("mousemove", (e) => {
+
+    const rect = heroVisual.getBoundingClientRect();
+
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    const rotateX = y * -8;
+    const rotateY = x * 10;
+
+    photoFrame.style.transform =
+      `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px)`;
+  });
+
+  heroVisual.addEventListener("mouseleave", () => {
+    photoFrame.style.transform =
+      "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)";
+  });
+}
