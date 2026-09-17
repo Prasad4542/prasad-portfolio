@@ -93,3 +93,21 @@ const observer = new IntersectionObserver((entries, obs) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* =========================
+   LOADING SCREEN
+========================= */
+
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add("hidden");
+
+      setTimeout(() => {
+        loader.remove();
+      }, 800);
+    }, 1000);
+  }
+});
